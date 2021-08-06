@@ -968,6 +968,7 @@ def test_product_variant_create_translation(
     settings.PLUGINS = ["saleor.plugins.webhook.plugin.WebhookPlugin"]
 
     product_variant_id = graphene.Node.to_global_id("ProductVariant", variant.id)
+
     response = staff_api_client.post_graphql(
         PRODUCT_VARIANT_TRANSLATE_MUTATION,
         {"productVariantId": product_variant_id, "input": {"name": "Wariant PL"}},
@@ -992,6 +993,7 @@ def test_product_variant_update_translation(
     variant,
     permission_manage_translations,
     settings,
+    django_assert_num_queries,
 ):
     settings.PLUGINS = ["saleor.plugins.webhook.plugin.WebhookPlugin"]
 

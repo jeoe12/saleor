@@ -617,6 +617,9 @@ class ProductVariantTranslation(Translation):
     def get_translated_object_id(self):
         return "ProductVariant", self.product_variant_id
 
+    def get_translated_object_parent(self):
+        return "Product", self.product_variant.product_id
+
     def get_translated_keys(self):
         return {"name": self.name}
 

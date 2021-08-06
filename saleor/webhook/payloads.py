@@ -619,10 +619,21 @@ def generate_translation_payload(translation: "Translation"):
         for key, value in translation.get_translated_keys().items()
     ]
 
+    parent = translation.get_translated_object_parent()
+    if parent:
+        parent_type, parent_id = parent
+        parent_payload = {
+            "id": graphene.Node.to_global_id(parent_type, parent_id),
+            "type": parent_type,
+        }
+    else:
+        parent_payload = None
+
     translation_data = {
         "id": graphene.Node.to_global_id(object_type, object_id),
-        "type": object_type,
         "language_code": translation.language_code,
+        "type": object_type,
+        "parent": parent_payload,
         "keys": translated_keys,
     }
 

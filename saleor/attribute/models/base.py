@@ -251,5 +251,8 @@ class AttributeValueTranslation(Translation):
     def get_translated_object_id(self):
         return "AttributeValue", self.attribute_value_id
 
+    def get_translated_object_parent(self):
+        return "Attribute", self.attribute_value.attribute_id
+
     def get_translated_keys(self):
         return {"name": self.name, "rich_text": self.rich_text}

@@ -1,4 +1,4 @@
-from typing import Any, Dict, Tuple, Union
+from typing import Any, Dict, Optional, Tuple, Union
 
 from django.db import models
 from django.utils.translation import get_language
@@ -43,6 +43,9 @@ class Translation(models.Model):
         raise NotImplementedError(
             "Models extending Translation should implement get_translated_object_id"
         )
+
+    def get_translated_object_parent(self) -> Optional[Tuple[str, Union[int, str]]]:
+        return None
 
     def get_translated_keys(self) -> Dict[str, Any]:
         raise NotImplementedError(
